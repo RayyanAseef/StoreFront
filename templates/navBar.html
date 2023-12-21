@@ -1,0 +1,29 @@
+<nav id="nav">
+    <div id="start">
+        <h1><a href="{% url 'home' %}" style="margin: 0px 20px" id="nav-link">LOGO</a></h1>
+        <div class="dropdown">
+            <h1>Create</h1>
+            <div class="dropdown-items">
+                <a href="{% url 'topic_form' %}" style="margin: 0px 20px">Create Topic</a>
+                <a href="{% url 'room_form' %}" style="margin: 0px 20px">Create Room</a>
+            </div>
+        </div>
+    </div>
+    <div id="middle">{% if request.user_agent.is_pc %}<form method="GET" action="{% url 'home' %}"><input type="text" id="search" name="q" placeholder="Search Rooms..."></form>{% endif %}</div>
+    <div id="end">
+        {% if request.user.is_authenticated %}
+        <img src="{{request.user.profilepic_set.first.profile_pic.url}}" width="50px" height="50px" style="border-radius: 50%;">
+        <div class="dropdown">
+            <h4 style="margin-bottom: 0px;">{{request.user.first_name}} {{request.user.last_name}}</h4>
+            <h4 style="margin-top: 0px;"><span style="color: lightblue;">@{{request.user.username}}</span></h4>
+            <div class="dropdown-items">
+                <a href="{% url 'profile' user.id %}" style="margin: 0px 20px">Profile</a>
+                <a href="{% url 'logout' %}" style="margin: 0px 20px">Logout</a>
+            </div>
+        </div>
+        {% else %}
+        <h1><a href="{% url 'register' %}" style="margin: 0px 20px" id="nav-link">Registar</a></h1>
+        <h1><a href="{% url 'login' %}" style="margin: 0px 20px" id="nav-link">Login</a></h1>
+        {% endif %}
+    </div>
+</nav>

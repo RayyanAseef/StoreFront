@@ -1,0 +1,23 @@
+<span>Recent Activity</span>
+<hr>
+{% for message in room_messages %}
+<div class="activity-feed-object">
+    <div style="display: flex; align-items: center;">
+        <img src="{{ message.user.profilepic_set.first.profile_pic.url   }}" width="30px" height="30px" style="border-radius: 50%;">
+        <small style="display: flex; justify-content: space-between; width: 100%;"><a href="{% url 'profile' message.user.id %}">@{{message.user}}</a><span>{{message.created|timesince}} ago</span></small>
+    </div>
+    <div style="margin-left: 40px; margin-right: -2px;">
+        <p>replied to post "{{message.room}}"</p>
+        <div class="content-box" style="margin: 0px">
+            <small>{{message}}...</small>
+            {% if request.user == message.user %}
+            <hr>
+            <div class="object-options">
+                <small><a href="{% url 'update_message' message.id %}" style="margin: 0px 20px">Update</a></small>
+                <small><a href="{% url 'delete_message' message.id %}" style="margin: 0px 20px">Delete</a></small>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endfor %}

@@ -1,0 +1,19 @@
+
+{% for room in rooms %}
+<div class="content-box room-container">
+    <div style="display: flex; align-items: center;">
+        <img src="{{room.host.profilepic_set.first.profile_pic.url}}" width="30px" height="30px" style="border-radius: 50%;">
+        <a href="{% url 'profile' room.host.id %}">@{{room.host.username}}</a>
+    </div>
+    <hr>
+    <small>{{room.topic.name}}</small>
+    <h1>{{room.id}}: <a href="{% url 'room' room.id %}">{{room.name}}</a></h1>
+    {% if request.user == room.host %}
+    <hr>
+    <div class="object-options">
+        <small><a href="{% url 'update_room' room.id %}" style="margin: 0px 20px">Update Room</a></small>
+        <small><a href="{% url 'delete_room' room.id %}" style="margin: 0px 20px">Delete Room</a></small>
+    </div>
+    {% endif %}
+</div>
+{% endfor %}

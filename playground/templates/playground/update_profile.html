@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div style="display: flex; justify-content: center;">
+    <div class="content-box">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %} <!--Protects Data-->
+            {{user_form.as_p}}
+            {{profile_pic_form.as_p}}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="main-content">
+    <div class="content-box side-bar">
+        {% include 'playground/topics_component.html' %}
+    </div>
+    <div class="rooms-container">
+        <div class="content-box">
+            <div style="display: flex; justify-content: center;"><img src='{{ profile_pic.profile_pic.url }}' height="125px" width="125px" style="border-radius: 50%;"></div>
+            <h3 style="text-align: center;">{{profile_user.first_name}} {{profile_user.last_name}}</h3>
+            <h3 style="text-align: center;"><span>@{{profile_user}}</span></h3>
+            {% if request.user == profile_user %}
+            <div style='text-align: center;'><a class="btn" href="{% url 'update_profile' %}">Edit Profile</a></div>
+            {% endif %}
+            <h3>ABOUT</h3>
+            <p>Dummy text</p>
+        </div>
+        <hr>
+        <div class="content-box">
+            <h4 style="text-align: center;">STUDY ROOMS HOSTED BY {{profile_user}}</h4>
+        </div>
+        {% include 'playground/feed_component.html' %}
+    </div>
+    <div class="content-box activity-feed">
+        {% include 'playground/activity_feed_component.html' %}
+    </div>
+</div>
+
+{% endblock %}

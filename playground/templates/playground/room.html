@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="content-box">
+    <h1>{{room.description}}</h1>
+</div>
+<hr>
+<div style="display: flex; justify-content: space-between;">
+    <div style="width: 70%; ">
+        <div class="content-box">
+            <h3>Comments:</h3>
+        </div>
+        {% for comment in comments %}
+        <div class="content-box">
+            <h5><span>@{{comment.user}}</span> ({{comment.created|timesince}} ago):</h5>
+            <p>{{comment.body}}</p>
+            {% if request.user == comment.user %}
+            <hr>
+            <div class="object-options">
+                <small><a href="{% url 'update_message' comment.id %}" style="margin: 0px 20px">Update Message</a></small>
+                <small><a href="{% url 'delete_message' comment.id %}" style="margin: 0px 20px">Delete Message</a></small>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div class="content-box">
+            <form method="POST" action="">
+                {% csrf_token %} <!--Protects Data-->
+                <input type="text" name="body" placeholder="Type your message here...">
+            </form>
+        </div>
+    </div>
+    <div style="width: 25%;">
+        <div class="content-box">
+            <h3>Participants:</h3>
+            {% for participant in partcipants %}
+            <p><span>@{{participant}}</span></p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

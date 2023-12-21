@@ -1,0 +1,212 @@
+
+/* css for main.html */
+body {
+    background-color: #98c1d9;
+    align-items: flex-start;
+
+    margin: 0px;
+}
+
+.content-box {
+    margin: 20px;
+    padding: 20px;
+
+    border: 2px solid black;
+    background-color: #e0fbfc;
+}
+
+.object-options {
+    display: flex;
+    justify-content: space-between;
+}
+
+span {
+    color: blue;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+}
+
+.btn {
+    padding: 1% 4%;
+    border: 1.2px solid black;
+    border-radius: 20px;
+    font-size: 80%;
+}
+
+/* css for navBar.html */
+#nav {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0px;
+
+    background-color: #3d5a80;
+    z-index: 10;
+}
+
+#start {
+    display: flex;
+    justify-content: inline left;
+}
+
+.dropdown {
+    color: white;
+    position: relative;
+    text-align: center;
+    width: 150px;
+    height: 100%;
+}
+
+.dropdown:hover .dropdown-items {
+    display: block;
+}
+
+.dropdown-items {
+    display: none;
+    position: absolute;
+
+    color: black;
+
+    top: 100%;
+
+    background-color: #e0fbfc;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.dropdown-items a {
+    text-decoration: none;
+}
+
+.dropdown-items a:hover {
+    color: blue;
+}
+
+#nav-link {
+    text-decoration: none;
+    color: white;
+}
+
+#nav-link:hover {
+    color: lightblue;
+}
+
+#middle {
+    display: flex;
+    justify-content: inline middle;
+    align-items: center;
+}
+
+#search {
+    width: 400px;
+    height: 25px;
+}
+
+#end {
+    display: flex;
+    justify-content: inline right;
+    align-items: center;
+    margin-right: 10px;
+}
+
+#end h1 {
+    color: white;
+}
+
+/* css for home.html */
+#start-text {
+    display: inline-block;
+}
+
+.not-rotated {
+    transition: 0s;
+    transform: rotate(0deg);
+}
+
+.rotated {
+    transition: 0s;
+    transform: rotate(180deg);
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: sticky;
+    top: 100px;
+
+    width: 300px;
+    max-height: 60vh;
+
+    overflow-y: auto;
+}
+
+.topic {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid black;
+    align-items: center;
+}
+
+.topic p {
+    width: 40px;
+    margin: 10px;
+    padding: 5px;
+
+    text-align: center;
+
+    background-color: lightblue;
+    border: 2px solid white;
+
+    color: white;
+    cursor: pointer;
+}
+
+.activity-feed {
+    width: 300px;
+    top: 100px;
+    position: sticky;
+
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.activity-feed-object {
+    background-color: #98c1d9;
+    border: 1px solid black;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+/* css for delete.html */
+#main {
+    display: flex;
+    justify-content: center;
+}
+
+#delete_form_box {
+    width: 400px;
+    text-align: center;
+}
+
+#options {
+    display: flex;
+    justify-content: space-between;
+}

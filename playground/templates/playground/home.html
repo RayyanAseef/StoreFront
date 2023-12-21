@@ -1,0 +1,73 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% if request.user_agent.is_pc %}
+<div id="user-message" style="width: 100sw; text-align: start;">
+    <!--To use conditions and loops use: -->
+    <!--    { % condition or loop %} -->
+    <!--    content in between-->
+    <!--    { % end(condition or loop)  %} -->
+    {% if request.user.is_authenticated %}
+    <h1 class="not-rotated" id="start-text">Hello {{request.user}}</h1>
+    {% else %}
+    <h1 class="not-rotated" id="start-text">Hello User</h1>
+    {% endif %}
+</div>
+<div style="display: flex; justify-content: center;"><button id="btn">Change Text Alignment</button></div>
+{% else %}
+<div style="display: flex; justify-content: center; margin: 30px;">{% if not request.user_agent.is_pc %}<form method="GET" action="{% url 'home' %}"><input type="text" id="search" name="q" placeholder="Search Rooms..."></form>{% endif %}</div>
+<div style="display: flex; justify-content: space-around; margin: 30px;">
+    <a class="btn" href="{% url 'topics' %}">Topics</a>
+    <a class="btn" href="{% url 'activity_feed' %}">Activities</a>
+</div>
+{% endif %}
+{% if request.user_agent.is_pc  %}
+<div class="main-content">
+{% else %}
+<div class="main-content" style="justify-content: center;">
+{% endif %}
+    {% if request.user_agent.is_pc  %}
+    <div class="content-box side-bar">
+        {% include 'playground/topics_component.html' %}
+    </div>
+    {% endif %}
+    <div class="rooms-container">
+        {% include 'playground/feed_component.html' %}
+    </div>
+    {% if request.user_agent.is_pc %}
+    <div class="content-box activity-feed">
+        {% include 'playground/activity_feed_component.html' %}
+    </div>
+    {% endif %}
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', intialize)
+    function intialize() {
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click', btnPressed)
+        loadTextAlignment()
+    }
+    function btnPressed() {
+        const mainContainer = document.getElementById('user-message');
+        mainContainer.style.textAlign = (mainContainer.style.textAlign == 'start') ? 'center' : (mainContainer.style.textAlign == 'center') ? 'end' : 'start';
+
+        const startText = document.getElementById('start-text');
+        startText.className = (startText.className == "not-rotated") ? "rotated" : "not-rotated";
+
+        saveTextAlignment(mainContainer.style.textAlign, startText.className);
+    }
+    function saveTextAlignment(textAlignValue, textClassValue) {
+        localStorage.setItem('textAlignValue', JSON.stringify(textAlignValue));
+        localStorage.setItem('textClassValue', JSON.stringify(textClassValue));
+    }
+    function loadTextAlignment() {
+        const mainContainer = document.getElementById('user-message');
+        mainContainer.style.textAlign = JSON.parse(localStorage.getItem('textAlignValue'));
+
+        const startText = document.getElementById('start-text');
+        startText.className = JSON.parse(localStorage.getItem('textClassValue'))
+    }
+</script>
+
+{% endblock %}

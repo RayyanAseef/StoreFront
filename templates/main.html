@@ -1,0 +1,23 @@
+<!DOCTYPE html> 
+{% load static %}
+{% load tz %}
+<html>
+<head>
+    <!--To use variables from dictionary: -->
+    <!--    {{ Variable }} -->
+    <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}?v={{ now|date:'U' }}">
+</head>
+<body>
+    {% include 'navBar.html' %}
+    {% if messages %}
+    <ul class="messages">
+        {%for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
+    <!-- <img src="{%static 'images/Profile_Pic.png'%}"> -->
+</body>
+</html>
